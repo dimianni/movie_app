@@ -3,7 +3,7 @@ import SearchIcon from './search.svg';
 import { useNavigate } from 'react-router-dom';
 
 
-const Search = () => {
+const Search = (props) => {
 
     const [inputVal, setInputVal] = useState('')
 
@@ -22,7 +22,10 @@ const Search = () => {
                 <input
                     type="text"
                     placeholder="Search for movies"
-                    onChange={(e) => setInputVal(e.target.value)}
+                    onChange={(e) => {
+                        setInputVal(e.target.value)
+                        props.onQuery(e.target.value)
+                    }}
                 />
             </form>
 

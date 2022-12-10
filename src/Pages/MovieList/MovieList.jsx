@@ -3,17 +3,18 @@ import { Link, useParams } from 'react-router-dom';
 import MovieCard from '../../components/MovieCard'
 
 
-const MovieList = () => {
+const MovieList = (props) => {
 
     const [movies, setMovies] = useState([])
 
     const params = useParams()
 
+    console.log(props.query);
+
     async function searchMovies(title) {
         try {
             const response = await fetch(`https://www.omdbapi.com/?apikey=${process.env.REACT_APP_MOVIE_API_KEY}&s=${title}`)
             const data = await response.json()
-            console.log(data);
             setMovies(data.Search);
         } catch (error) {
             console.log(error);
